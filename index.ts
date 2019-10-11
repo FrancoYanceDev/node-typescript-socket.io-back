@@ -2,7 +2,7 @@ import Server from "./clases/Server";
 import { SERVER_PORT } from "./global/environment";
 import router from './route/Router'
 
-const server = new Server();
+const server = Server.instance;                                             //Metodo estatico
 server.app.use('/', router)
 
 server.start(()=>{                                                          //Envio una callback al metodo start()
