@@ -17,9 +17,10 @@ export default class Server{
     private httpServer: http.Server;
 
     private constructor(){                                                  //Singleton
+        this.port = SERVER_PORT;
         this.app = express();
         this.middleware();
-        this.port = SERVER_PORT;
+        
 
         this.httpServer = new http.Server(this.app);
         this.io = socket(this.httpServer);
@@ -48,7 +49,7 @@ export default class Server{
             console.log('Cliente conectado');
 
             sockets.desconectar(cliente);
-            sockets.message(cliente, this.io);
+            sockets.message(cliente, this.io);                              //Envio el io (Servidor) para hacer un emit a todos los clientes
         })
     }
 
